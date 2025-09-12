@@ -20,7 +20,7 @@ Drifting through a labyrinth of display walls with some 300 or so posters and re
 
 Being on the other side is not any easier. When I was at a conference recently presenting a poster of our work, as I diligently stood by my poster, hoping someone would stop, many a time I found myself in what can only be described as a staring contest with other conference-goers as they decided whether they'd like to hear me go through my work or answer any of their questions. This stand-off would often cease when they decide it's not for them—much to my disappointment. Here, I will happily acknowledge any counterarguments that the passerby may have read my poster and may have had no questions or comments to share with me. I will now swiftly refute such a counterargument on the grounds that *no human or machine is able to read 500 words in 3.62 seconds*.
 
-When people do stop by your poster, it is often because they may be working in a similar area of research and find your work relevant to them. They might want you to take them through your work or have specific questions based on their work and experience. These moments tend to be the highlight of conferences. You get to meet new people who have committed a part of their life—regardless of how big or small—researching and exploring the same things you've dedicated a part of your life exploring. That is to say, it's not all that bad!
+When people do stop by your poster, it is often because they may be working in a similar area of research and find your work relevant to them. They might want you to take them through your work or have specific questions based on their work and experience. These moments tend to be the highlights of conferences. You get to meet new people who have committed a part of their life—regardless of how big or small—researching and exploring the same things you've dedicated a part of your life exploring. That is to say, it's not all that bad!
 
 ---
 
@@ -56,7 +56,7 @@ It doesn't need to be said but please don't hound passersby (nothing is worse th
 
 ### Attention and "The Big Bet"
 
-More broadly, my early impression is that there is a strong onus on every researcher to advocate and market their own paradigm--often in order to "out-sell" competing paradigms.
+More broadly, my early impression is that there is a strong onus on every researcher to advocate and market their own paradigm--often in order to "out-sell" competing paradigms. The way you "sell" your research could be in the form of engaging more attendees at poster presentations, but it goes beyond that and has severe ramifications in how many new researchers enter your research domain, align with your ideas,  
 
 How will we truly arrive at reasoning artificial intelligence models? Is it through:
 - embedding causal models of thinking?

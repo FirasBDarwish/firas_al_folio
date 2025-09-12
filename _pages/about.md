@@ -4,8 +4,7 @@ title: about
 permalink: /
 subtitle: >
   UAE Rhodes Scholar<br>
-  Research Assistant at <a href='https://nyuad.nyu.edu/en/research/faculty-labs-and-projects/center-for-artificial-intelligence-and-robotics.html'>Center of AI and Robotics</a>.<br>
-  Incoming StatML PhD Student at the <a href='https://statml.io'>University of Oxford</a>.
+  StatML PhD Student at the <a href='https://statml.io'>University of Oxford</a>.
 
 
 profile:
@@ -30,12 +29,12 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am set to begin my PhD in Statistics and Machine Learning at the University of Oxford as a UAE Rhodes Scholar this Fall. My current research interests are centered around 3 areas:
+I am doing my PhD in Statistics and Machine Learning at the University of Oxford as a UAE Rhodes Scholar. Through the StatML program, I am also a visiting student at Imperial. My current research interests are centered around 3 areas:
   1. **Perception**, or the study of how intelligent systems can interpret and understand raw sensory inputs--such as images, audio, or spatal data--to form *coherent, actionable representations of the world*--particularly when we infuse inductive biases about the physical world.
   2. **Interpretability**, or exploring *how neural networks represent, process, and reason about information* to uncover embedded biases as well as compare neural world models to human cognition or reality.
   3. **Uncertainty**, or measuring *how confident a model is in its predictions* to identify out-of-distribution inputs, improve robustness, and guide active learning.
 
-I received an undergraduate degree in Computer Engineering (BSc) from [New York University Abu Dhabi](https://nyuad.nyu.edu/en/) (Summa Cum Laude). Previously, I worked as an undergraduate research assistant at NYU's [Center for Artificial Intelligence and Robotics](https://nyuad.nyu.edu/en/research/faculty-labs-and-projects/center-for-artificial-intelligence-and-robotics.html) with Professor [Farah Shamout](https://nyuad.nyu.edu/en/academics/divisions/engineering/faculty/farah-emad-shamout.html) and Professor [Farokh Atashzar](https://www.amazon.science/author/farokh-atashzar). I have also worked on AI Governance with [e&](https://www.eand.com/en/index.html)'s AI and Data team, and was selected to be a tutor on AI programs sponsored by the UAE's [Ministry of State for Artificial Intelligence, Digital Economy and Remote Work Applications](https://ai.gov.ae).
+I received an undergraduate degree in Computer Engineering (BSc) from [New York University Abu Dhabi](https://nyuad.nyu.edu/en/) (Summa Cum Laude). Previously, I worked as an undergraduate research assistant at NYU's [Center for Artificial Intelligence and Robotics](https://nyuad.nyu.edu/en/research/faculty-labs-and-projects/center-for-artificial-intelligence-and-robotics.html) with Professor [Farah Shamout](https://nyuad.nyu.edu/en/academics/divisions/engineering/faculty/farah-emad-shamout.html) and Professor [Farokh Atashzar](https://www.amazon.science/author/farokh-atashzar). I have also worked on AI Governance with [e&](https://www.eand.com/en/index.html)'s AI and Data team. I also consult and teach on several executive education AI programs, such as the Artificial Intelligence Program sponsored by the UAE's [Ministry of State for Artificial Intelligence, Digital Economy and Remote Work Applications](https://ai.gov.ae) and the Korean Government Artificial Intelligence Program sponsored by the South Korean government.
 
 For further details, please see my [CV](/cv/).
 
