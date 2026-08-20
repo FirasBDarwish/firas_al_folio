@@ -12,6 +12,8 @@ export const site = {
     generalise across tasks and environments.
   `,
 
+  metaDescription:'Rhodes Scholar and PhD student in Statistics and Machine Learning at the University of Oxford, researching machine learning and robotics.',
+
   affiliation: 'Rhodes Scholar · University of Oxford',
   email: 'firas.darwish@worc.ox.ac.uk',
   portrait: '/images/prof_pic_website.jpg',
