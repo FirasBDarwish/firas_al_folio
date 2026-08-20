@@ -1,0 +1,106 @@
+---
+const { books } = Astro.props;
+---
+<div class="book-controls" aria-label="Book filters">
+  <button class="active" data-filter="all">All</button>
+  <button data-filter="favourite">Favourites</button>
+  <button data-filter="reading">Currently reading</button>
+</div>
+
+<div class="bookshelf">
+  <div class="shelf-row">
+    {books.map((book, index) => (
+      <button
+        class="book"
+        style={`--h:${book.height ?? 230}px;--w:${book.width ?? 145}px`}
+        data-index={index}
+        data-favourite={book.favourite ? 'true' : 'false'}
+        data-reading={book.currentlyReading ? 'true' : 'false'}
+        aria-label={`Open ${book.title} by ${book.author}`}
+      >
+        {book.cover ? (
+          <img class="book-cover" src={book.cover} alt={`${book.title} cover`} loading="lazy" />
+        ) : (
+          <div class="book-cover generic-cover" aria-hidden="true">
+            <span class="generic-title">{book.title}</span>
+            <span class="generic-author">{book.author}</span>
+          </div>
+        )}
+        {book.favourite && <span class="bookmark" title="Favourite"></span>}
+      </button>
+    ))}
+  </div>
+</div>
+
+<dialog class="book-dialog" id="book-dialog">
+  <div class="book-open">
+    <div class="book-open-cover">
+      <img id="dialog-cover" src="" alt="" />
+      <div class="dialog-generic-cover generic-cover" id="dialog-generic-cover" hidden>
+        <span class="generic-title" id="dialog-generic-title"></span>
+        <span class="generic-author" id="dialog-generic-author"></span>
+      </div>
+    </div>
+    <div class="book-note">
+      <button class="close-book" aria-label="Close book">×</button>
+      <div class="eyebrow">Note</div>
+      <h2 id="dialog-title"></h2>
+      <p class="byline" id="dialog-byline"></p>
+      <div class="book-note-text" id="dialog-note"></div>
+      <div class="book-note-signature">Firas Darwish</div>
+    </div>
+  </div>
+</dialog>
+
+<script define:vars={{ books }}>
+  const dialog = document.querySelector('#book-dialog');
+  const title = document.querySelector('#dialog-title');
+  const byline = document.querySelector('#dialog-byline');
+  const note = document.querySelector('#dialog-note');
+  const cover = document.querySelector('#dialog-cover');
+  const genericCover = document.querySelector('#dialog-generic-cover');
+  const genericTitle = document.querySelector('#dialog-generic-title');
+  const genericAuthor = document.querySelector('#dialog-generic-author');
+
+  document.querySelectorAll('.book').forEach((button) => {
+    button.addEventListener('click', () => {
+      const book = books[Number(button.dataset.index)];
+      title.textContent = book.title;
+      byline.textContent = `${book.author}${book.dateRead ? ` · Read ${book.dateRead}` : ''}${book.currentlyReading ? ' · Currently reading' : ''}`;
+      note.textContent = book.note;
+
+      if (book.cover) {
+        cover.src = book.cover;
+        cover.alt = `${book.title} cover`;
+        cover.hidden = false;
+        genericCover.hidden = true;
+      } else {
+        cover.hidden = true;
+        genericTitle.textContent = book.title;
+        genericAuthor.textContent = book.author;
+        genericCover.hidden = false;
+      }
+
+      dialog.showModal();
+    });
+  });
+
+  document.querySelector('.close-book')?.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  document.querySelectorAll('.book-controls button').forEach((button) => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.book-controls button').forEach((b) => b.classList.remove('active'));
+      button.classList.add('active');
+      const filter = button.dataset.filter;
+      document.querySelectorAll('.book').forEach((book) => {
+        const show = filter === 'all' ||
+          (filter === 'favourite' && book.dataset.favourite === 'true') ||
+          (filter === 'reading' && book.dataset.reading === 'true');
+        book.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>

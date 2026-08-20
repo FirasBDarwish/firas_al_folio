@@ -1,0 +1,17 @@
+---
+import { projects } from '../data/projects';
+const { limit } = Astro.props;
+const shown = typeof limit === 'number' ? projects.slice(0, limit) : projects;
+---
+<div class="project-list">
+  {shown.map((project) => (
+    <a class="project-row" href={project.href} target="_blank" rel="noreferrer">
+      <div>
+        <h3>{project.name}</h3>
+        <p>{project.description}</p>
+        {project.meta && <div class="project-meta">{project.meta}</div>}
+      </div>
+      <span aria-hidden="true">↗</span>
+    </a>
+  ))}
+</div>

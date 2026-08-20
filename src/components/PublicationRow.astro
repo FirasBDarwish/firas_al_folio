@@ -1,0 +1,44 @@
+---
+const { pub } = Astro.props;
+const links = Object.entries(pub.data.links ?? {}).filter(([, value]) => Boolean(value));
+const label: Record<string, string> = {
+  arxiv: 'arXiv ↗',
+  scholar: 'Scholar ↗',
+  website: 'Website ↗',
+  code: 'Code ↗',
+  paper: 'Paper ↗',
+  poster: 'Poster ↗',
+};
+---
+<article class:list={['pub-row', { featured: pub.data.featured }]}>
+  <div class="pub-media">
+    {pub.data.image ? <img src={pub.data.image} alt="" loading="lazy" /> : null}
+  </div>
+  <div>
+    {pub.data.featured && <span class="selected-label">Selected work</span>}
+    <h3 class="pub-title"><span>{pub.data.title}</span></h3>
+    <div class="pub-authors">
+      {pub.data.authors.map((author, index) => (
+        <>
+          <span class={author === 'Firas Darwish' ? 'author-me' : ''}>
+            {author}
+            {pub.data.equalContribution.includes(author) && (
+              <sup class="equal-contribution">*</sup>
+            )}
+          </span>
+          {index < pub.data.authors.length - 1 && ', '}
+        </>
+      ))}
+      {pub.data.equalContribution.length > 0 && (
+        <div class="equal-note">
+          <span class="equal-contribution">*</span> Equal contribution
+        </div>
+      )}
+    </div>
+    {pub.data.venue && <p class="pub-venue">{pub.data.venue} · {pub.data.year}</p>}
+    {!pub.data.venue && <p class="pub-venue">{pub.data.year}</p>}
+    <div class="pub-links">
+      {links.map(([key, href]) => <a href={href as string} target="_blank" rel="noreferrer">{label[key] ?? key}</a>)}
+    </div>
+  </div>
+</article>

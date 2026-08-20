@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = site.description } = Astro.props;
+const pageTitle = title ? `${title} — ${site.name}` : `${site.name} ${site.title}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/oxford.svg" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="/">{site.name}</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="/publications">Publications</a>
+          <a href="/writing">Writing</a>
+          <a href="/projects">Projects</a>
+          <a href="/engagement">Engagement</a>
+          <a href="/books">Books</a>
+          <a class="cv-link" href={site.cv} target="_blank">CV ↓</a>
+        </nav>
+      </div>
+    </header>
+    <main><slot /></main>
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <span>© {new Date().getFullYear()} {site.name}</span>
+        <span>Built with Astro.</span>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('writing', ({ data }) => !data.draft))
+  .sort((a, b) => {
+    if (a.data.featured !== b.data.featured) {
+      return Number(b.data.featured) - Number(a.data.featured);
+    }
+
+    return b.data.date.valueOf() - a.data.date.valueOf();
+  });
+
+const typeLabels: Record<string, string> = {
+  'technical-note': 'Technical note',
+  'research-thought': 'Research thought',
+  'presentation': 'Presentation',
+  'paper': 'Paper',
+  'class-note': 'Class note',
+  'reading-group': 'Reading group',
+  'paper-review': 'Paper review',
+  'misc': 'Misc.',
+};
+
+const typeOrder = ['all', 'technical-note', 'research-thought', 'presentation', 'paper', 'class-note', 'reading-group', 'paper-review', 'misc'];
+const availableTypes = new Set(posts.map((post) => post.data.type));
+const filters = typeOrder.filter((type) => type === 'all' || availableTypes.has(type));
+---
+<BaseLayout title="Writing">
+  <div class="container page-header">
+    <div class="eyebrow">Notes, thoughts & material</div>
+    <h1 class="page-title">Writing</h1>
+    <p>Technical notes, research thoughts, presentations, informal papers and things I want to understand better.</p>
+  </div>
+
+  <section style="padding-top: 18px">
+    <div class="container">
+      <div class="writing-controls" aria-label="Writing filters">
+        {filters.map((type) => (
+          <button class={type === 'all' ? 'active' : ''} data-writing-filter={type}>
+            {type === 'all' ? 'All' : typeLabels[type]}
+          </button>
+        ))}
+      </div>
+
+      <div class="writing-list" id="writing-list">
+        {posts.map((post) => {
+          const isFile = Boolean(post.data.file);
+          const href = post.data.file ?? `/writing/${post.id}`;
+          return (
+            <a
+              class:list={[{ 'featured-writing-row': post.data.featured }]}
+              href={href}
+              data-writing-type={post.data.type}
+              target={isFile ? '_blank' : undefined}
+              rel={isFile ? 'noreferrer' : undefined}
+            >
+              <time>{post.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</time>
+              <div class="writing-copy">
+                {post.data.featured && (
+                  <div class="writing-featured">Selected writing</div>
+                )}
+                <div class={`writing-type type-${post.data.type}`}>{typeLabels[post.data.type]}</div>
+                <h3>{post.data.title}</h3>
+                <div class="muted">{post.data.description}</div>
+              </div>
+              <span class="arrow">{isFile ? '↗' : '→'}</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('[data-writing-filter]').forEach((button) => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('[data-writing-filter]').forEach((item) => item.classList.remove('active'));
+      button.classList.add('active');
+      const filter = button.getAttribute('data-writing-filter');
+
+      document.querySelectorAll('[data-writing-type]').forEach((item) => {
+        const show = filter === 'all' || item.getAttribute('data-writing-type') === filter;
+        (item as HTMLElement).style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>

@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PublicationRow from '../components/PublicationRow.astro';
+import ProjectList from '../components/ProjectList.astro';
+import { site } from '../data/site';
+
+const publications = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
+const featured = publications.filter((p) => p.data.featured).sort((a, b) => (a.data.featuredOrder ?? 999) - (b.data.featuredOrder ?? 999)).slice(0, 4);const posts = (await getCollection('writing', ({ data }) => !data.draft))
+  .sort((a, b) => {
+    if (a.data.featured !== b.data.featured) {
+      return Number(b.data.featured) - Number(a.data.featured);
+    }
+
+    return b.data.date.valueOf() - a.data.date.valueOf();
+  })
+  .slice(0, 3);
+const writingTypeLabels: Record<string, string> = {
+  'technical-note': 'Technical note',
+  'research-thought': 'Research thought',
+  'presentation': 'Presentation',
+  'paper': 'Paper',
+  'class-note': 'Class note',
+  'reading-group': 'Reading group',
+  'paper-review': 'Paper review',
+  'misc': 'Misc.',
+};
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="container hero-grid">
+      <img class="portrait" src={site.portrait} alt={`${site.name} portrait`} />
+      <div>
+        <div class="eyebrow">{site.affiliation}</div>
+        <h1>{site.name}</h1>
+        <p class="hero-description" set:html={site.description}</p>
+        <p class="muted">
+          I also
+          <a href="https://oxc.ai" target="_blank" rel="noopener noreferrer">teach</a>
+          on executive education AI programmes for the governments of the
+          <span class="text-uae">UAE</span>
+          and
+          <span class="text-korea">South Korea</span>.
+          Previously, I graduated summa cum laude in Computer Engineering from
+          <span class="text-nyu">NYU Abu Dhabi</span>,
+          where I worked with
+          <a class="link-farah" href="https://clinicalailab.com/index.html" target="_blank" rel="noopener noreferrer">Farah Shamout</a>.
+          I also worked on AI Governance in <span class="text-eand">e&</span>.
+        </p>
+        <div class="socials">
+          {site.socials.map((item) => <a href={item.href} target={item.href.startsWith('mailto:') ? undefined : '_blank'} rel="noreferrer">{item.label} ↗</a>)}
+          <a href={site.cv} target="_blank">CV ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head"><h2>Selected Work</h2><a href="/publications">All publications →</a></div>
+      <div class="pub-list">{featured.map((pub) => <PublicationRow pub={pub} />)}</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head"><h2>Projects</h2><a href="/projects">All projects →</a></div>
+      <ProjectList limit={3} />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head"><h2>Writing</h2><a href="/writing">All writing →</a></div>
+      <div class="writing-list">
+        {posts.map((post) => (
+          <a href={post.data.file ?? `/writing/${post.id}`} target={post.data.file ? '_blank' : undefined} rel={post.data.file ? 'noreferrer' : undefined}>
+            <time>{post.data.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</time>
+            <div class="writing-copy">
+              <div class={`writing-type type-${post.data.type}`}>{writingTypeLabels[post.data.type]}</div>
+              <h3>{post.data.title}</h3>
+              <div class="muted">{post.data.description}</div>
+            </div>
+            <span class="arrow">{post.data.file ? '↗' : '→'}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

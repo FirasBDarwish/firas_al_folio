@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Bookshelf from '../components/Bookshelf.astro';
+import { books } from '../data/books';
+
+const shuffledBooks = [...books].sort(() => Math.random() - 0.5);
+---
+<BaseLayout title="Books">
+  <div class="container page-header">
+    <div class="eyebrow">Reading</div>
+    <h1 class="page-title">Books</h1>
+    <p>A collection of books that have influenced my work and thinking, inspired me in different ways, and helped make me who I am today. Pull one out to read the note I left inside. Yellow bookmarks mark favourites.</p>
+  </div>
+  <section style="padding-top: 18px"><div class="container"><Bookshelf books={shuffledBooks} /></div></section>
+</BaseLayout>

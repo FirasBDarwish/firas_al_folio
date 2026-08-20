@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectList from '../components/ProjectList.astro';
+---
+<BaseLayout title="Projects">
+  <div class="container page-header">
+    <div class="eyebrow">Code & systems</div>
+    <h1 class="page-title">Projects</h1>
+    <p>A small selection of notable repositories and projects.</p>
+  </div>
+  <section style="padding-top: 18px"><div class="container"><ProjectList /></div></section>
+</BaseLayout>
