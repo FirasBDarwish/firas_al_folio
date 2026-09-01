@@ -1,5 +1,3 @@
-@import 'katex/dist/katex.min.css';
-
 :root {
   --bg: #f7f6f1;
   --paper: #fffefa;
@@ -356,4 +354,159 @@ section { padding: 72px 0; }
 
 .type-other {
   background: #ecebe5;
+}
+
+/* =========================================================
+   Technical writing / mathematics — MathJax
+   ========================================================= */
+
+.prose {
+  font-size: 1.02rem;
+  line-height: 1.78;
+  color: var(--muted);
+}
+
+.prose p {
+  margin: 1em 0;
+}
+
+.prose p,
+.prose li {
+  line-height: 1.82;
+}
+
+
+/* ---------------------------------------------------------
+   Inline mathematics
+   --------------------------------------------------------- */
+
+.prose mjx-container:not([display="true"]) {
+  color: var(--text);
+  font-size: 1.08em;
+  margin: 0 0.06em;
+}
+
+
+/* ---------------------------------------------------------
+   Display mathematics
+   --------------------------------------------------------- */
+
+.prose mjx-container[display="true"] {
+  display: block;
+
+  width: min(900px, calc(100vw - 48px));
+
+  margin-left: 50% !important;
+  transform: translateX(-50%);
+
+  margin-top: 1.45rem !important;
+  margin-bottom: 1.45rem !important;
+
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+
+  overflow-x: auto;
+  overflow-y: visible;
+
+  color: var(--text);
+
+  font-size: 1.12em;
+}
+
+
+/* Make the generated SVG use its natural dimensions */
+
+.prose mjx-container[display="true"] > svg {
+  overflow: visible;
+  max-width: none;
+}
+
+
+/* Breathing room between prose and equations */
+
+.prose p + mjx-container[display="true"] {
+  margin-top: 1.55rem !important;
+}
+
+.prose mjx-container[display="true"] + p {
+  margin-top: 1.35rem;
+}
+
+.math-highlight {
+  background: linear-gradient(
+    transparent 58%,
+    var(--accent-soft) 58%
+  );
+
+  padding: 0 0.12em;
+  border-radius: 2px;
+}
+
+.math-highlight-block {
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.5em auto;
+
+  background: rgba(244, 223, 109, 0.16);
+}
+
+/* =========================================================
+   Algorithm / pseudocode blocks
+   ========================================================= */
+
+.algorithm-block {
+  margin: 2.2rem 0;
+  padding: 1.4rem 1.6rem 1.5rem;
+
+  background: #f2f1eb;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+
+  color: var(--text);
+  font-size: 0.97rem;
+  line-height: 1.65;
+}
+
+.algorithm-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  color: #274D82;
+  margin-bottom: 1rem;
+}
+
+.algorithm-meta {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.algorithm-meta p {
+  margin: 0.35rem 0;
+}
+
+.algorithm-rule {
+  border-top: 1px solid var(--line);
+  margin: 1rem 0 1.2rem;
+}
+
+.algorithm-step {
+  margin: 1rem 0 1.25rem;
+  padding-left: 1.1rem;
+  border-left: 2px solid #d5d3ca;
+}
+
+.algorithm-step > p:first-child {
+  margin-top: 0;
+}
+
+.algorithm-step > p:last-child {
+  margin-bottom: 0;
+}
+
+/* equations inside algorithm blocks should not become oversized */
+.algorithm-block mjx-container[display="true"] {
+  margin-top: 0.85rem !important;
+  margin-bottom: 0.85rem !important;
+  font-size: 1em;
 }

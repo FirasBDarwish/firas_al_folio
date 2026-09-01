@@ -13,6 +13,7 @@
     "astro": "^5.13.3",
     "katex": "^0.16.22",
     "rehype-katex": "^7.0.1",
+    "rehype-mathjax": "^7.1.0",
     "remark-math": "^6.0.0"
   },
   "devDependencies": {

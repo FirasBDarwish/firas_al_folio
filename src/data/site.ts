@@ -3,7 +3,7 @@ export const site = {
   title: '',
 
   description: `
-    I am a <strong class="text-rhodes">Rhodes Scholar</strong> and PhD student in
+    I am a <strong class="text-rhodes">Rhodes Scholar</strong> and a PhD student in
     Statistics and Machine Learning
     (<a class="link-statml" href="https://statml.io" target="_blank" rel="noopener noreferrer">StatML</a>)
     at the University of Oxford.

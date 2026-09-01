@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+import rehypeMathjax from 'rehype-mathjax/svg';
 
 export default defineConfig({
   site: 'https://firasbdarwish.github.io',
@@ -10,6 +10,6 @@ export default defineConfig({
 
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [rehypeMathjax],
   },
 });
